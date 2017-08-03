@@ -5,7 +5,7 @@ Style支持开发者自己实现动态壁纸效果，并以组件（插件）的
 这篇文章主要介绍：
 * 如何开发动态壁纸组件
 * 如何测试
-* 一些需要注意的地方
+* 性能说明
 
 ### 壁纸组件与壁纸应用的区别
 尽管两者都以.apk形式存在，但组件不是一个完整的应用，不能够独立运行。
@@ -84,3 +84,4 @@ public class ProviderImpl implements IProvider {
 其中**component_name**是组件包的文件名，也需要放在/sdcard/style/目录。**provider_name**是上面实现的`IProvider`类名称，包名+类名。
 
 将**config.json**和**point.apk**都放在/sdcard/style/目录下之后，运行测试应用。点击按钮，如果壁纸能正常加载，那么我们就成功了。
+
