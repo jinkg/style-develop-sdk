@@ -18,3 +18,14 @@ Style支持开发者自己实现动态壁纸效果，并以组件（插件）的
 最后，组件中不支持.so文件。
 
 组件中除了上述几点之外，其他的基本跟普通应用没有区别。因此现成的绝大多数壁纸应用转化成组件的成本、组件的开发成本非常低廉。
+
+## 工程模块说明
+本工程一共包含三个模块：
+* sdk
+* cube-wallpaper
+* component-app
+sdk模块是一个library模块，它是为开发者提供的组件编程规范。里面提供了`IProvider`接口、`GLWallpaperServiceProxy`类和`WallpaperServiceProxy`类，开发者需要实现他们以满足组件的规范。
+
+cube-wallpaper模块是一个library模块，是壁纸的实现的一个demo，它实现`GLWallpaperServiceProxy`渲染出了一个立方体。该模块依赖sdk模块，但是在gradle中需要使用`provided`而不是`compile`,防止将sdk模块打到组件包里。
+
+component-app模块是application模块。里面没有任何内容，只是简单的依赖了cube-wallpaper模块。你可以将它理解为组件的**壳**
