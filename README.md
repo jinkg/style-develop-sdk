@@ -32,9 +32,10 @@ component-app模块是application模块。里面没有任何内容，只是简�
 
 ## 第一个组件壁纸
 仅需以下几步，即可创建你自己的组件壁纸
+
 1、导入sdk模块
+
 2、新建library模块（例如poing-wallpaper），并通过`provided project(':sdk')`依赖sdk模块。
-3、新建`PointWallpaperService`类，继承自`WallpaperServiceProxy`类，并新建`PoingWallpaperEngine`类，继承自`WallpaperServiceProxy.ActiveEngine`类。例如
 
 3、新建`PointWallpaperService`类，继承自`WallpaperServiceProxy`类，并新建`PoingWallpaperEngine`类，继承自`WallpaperServiceProxy.ActiveEngine`类。例如
 ```
