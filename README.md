@@ -81,6 +81,6 @@ public class ProviderImpl implements IProvider {
   "provider_name": "com.yalin.wallpaper.point.ProviderImpl"
 }
 ```
-其中**component_name**是组件包的文件名，也需要放在**/sdcard/style/**目录。**provider_name**是上面实现的`IProvider`类名称，包名+类名。
+其中**component_name**是组件包的文件名，也需要放在*/sdcard/style/*目录。**provider_name**是上面实现的`IProvider`类名称，包名+类名。
 
-将**config.json**和**point.apk**都放在**/sdcard/style/**目录下之后，运行测试应用。点击按钮，如果壁纸能正常加载，那么我们就成功了。
+将**config.json**和**point.apk**都放在*/sdcard/style/*目录下之后，运行测试应用。点击按钮，如果壁纸能正常加载，那么我们就成功了。
