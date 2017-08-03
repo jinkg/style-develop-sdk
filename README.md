@@ -57,6 +57,8 @@ public class PointWallpaperService extends WallpaperServiceProxy {
 
 4、实现`IProvider`接口，并通过其中的方法返回一个`PointWallpaperService`对象。
 ```
+package com.yalin.wallpaper.point;
+
 public class ProviderImpl implements IProvider {
     @Override
     public WallpaperService provideProxy(Context host) {
@@ -66,3 +68,16 @@ public class ProviderImpl implements IProvider {
 ```
 
 5、执行./gradlew assemble，会在component-app/build/outputs/apk/目录下产生组件的apk文件。那么一切就绪，组件开发完成。
+
+## 测试壁纸组件
+组件在Style中发布，需要经过审核，以保证组件质量。
+
+在本工程的根目录下，为大家提供了**sdk_test.apk**文件。它包含Style中组件的运行环境。所以只要保证它能运行组件即可。
+
+另外，你还需要一个配置文件**config.json**内容如下。并将它放到**/sdcard/style/**目录下面。
+```
+{
+  "component_name": "point.apk",
+  "provider_name": "com.yalin.wallpaper.point.ProviderImpl"
+}
+```
