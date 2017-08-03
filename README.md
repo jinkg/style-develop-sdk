@@ -54,3 +54,15 @@ public class PointWallpaperService extends WallpaperServiceProxy {
       // implement your wallpaper logic
     }
 ```
+
+4、实现`IProvider`接口，并通过其中的方法返回一个`PointWallpaperService`对象。
+```
+public class ProviderImpl implements IProvider {
+    @Override
+    public WallpaperService provideProxy(Context host) {
+        return new PointWallpaperService(host);
+    }
+}
+```
+
+5、执行./gradlew assemble，会在component-app/build/outputs/apk/目录下产生组件的apk文件。那么一切就绪，组件开发完成。
