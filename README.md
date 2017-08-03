@@ -9,3 +9,6 @@ Style支持开发者自己实现动态壁纸效果，并以组件（插件）的
 
 ## 壁纸组件与壁纸应用的区别
 尽管两者都以.apk形式存在，但组件不是一个完整的应用，不能够独立运行。
+
+另外，组件中的WallpaperService实现，必须继承自`GLWallpaperServiceProxy`或者`WallpaperServiceProxy`，这是两个代理服务。前者是`GLWallpaperService`的子类，支持OpenGL。后者是系统`WallpaperService`的子类，支持普通的实现。而者两个代理类，都有一个带有`Context`参数的构造方法。
+而在壁纸应用中，应用的WallpaperService通常是直接继承自`GLWallpaperService`或者`WallpaperService`的，并且必须有个无参的构造方法，供系统创建对象。
