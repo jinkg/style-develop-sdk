@@ -12,3 +12,9 @@ Style支持开发者自己实现动态壁纸效果，并以组件（插件）的
 
 另外，组件中的WallpaperService实现，必须继承自`GLWallpaperServiceProxy`或者`WallpaperServiceProxy`，这是两个代理服务。前者是`GLWallpaperService`的子类，支持OpenGL。后者是系统`WallpaperService`的子类，支持普通的实现。而者两个代理类，都有一个带有`Context`参数的构造方法。
 而在壁纸应用中，应用的WallpaperService通常是直接继承自`GLWallpaperService`或者`WallpaperService`的，并且必须有个无参的构造方法，供系统创建对象。
+
+组件中需要实现sdk提供`IProvider`接口，以返回组件中的WallpaperService实现。
+
+最后，组件中不支持.so文件。
+
+组件中除了上述几点之外，其他的基本跟普通应用没有区别。因此现成的壁纸应用转化成组件的成本非常低廉。
