@@ -1,2 +1,6 @@
-# style-develop-sdk
-Style sdk for developer
+# Style开发者sdk
+Style支持开发者自己实现动态壁纸效果，并以组件（插件）的方式被Style所加载（热加载）。
+
+这篇文章主要介绍如何*开发动态壁纸组件*、*如何测试*、以及一些需要注意的地方。
+
+
