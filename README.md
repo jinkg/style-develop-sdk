@@ -74,7 +74,7 @@ public class ProviderImpl implements IProvider {
 
 在本工程的根目录下，为大家提供了**sdk_test.apk**文件。它包含Style中组件的运行环境。所以只要保证它能运行组件即可。
 
-另外，你还需要一个配置文件**config.json**内容如下。并将它放到**/sdcard/style/**目录下面。
+另外，你还需要一个配置文件**config.json**内容如下。并将它放到/sdcard/style/目录下面。运行前请确保将*读取外部存储*权限给**sdk_test.apk**。
 ```
 {
   "component_name": "point.apk",
