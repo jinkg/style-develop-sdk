@@ -1,1 +1,1 @@
-include ':component-app', ':sdk', ':cube-wallpaper'
+include ':component-app', ':style-component-sdk', ':cube-wallpaper'
