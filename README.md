@@ -2,29 +2,42 @@
 Style支持开发者自己实现动态壁纸效果，并以组件（插件）的方式被Style所加载（热加载）。
 所有的组件都会在Style的**特效动态壁纸**列表里展现，供用户选择使用。
 
+同时**动态壁纸合集**应用也可以同样加载组件
+
 这篇文章主要介绍：
-* 如何开发动态壁纸组件
+* 组件介绍
+* 如何开发组件
 * 如何测试
 * 性能说明
+* 代码混淆
+
+## 什么是动态壁纸组件
+### 壁纸引擎框架
+壁纸引擎框架是运行壁纸组件的环境，里面包含了壁纸渲染的依赖代码，例如BadLogicGames的相关代码。
+引擎框架会在系统中注册空白的服务，并将空白服务的生命周期方法交给代理对象。
+同时引擎框架也负责创建代理对象，并调用它们的生命周期方法。
+可以理解为，引擎框架就是一副空壳。壁纸的渲染都由组件完成。
 
 ### 壁纸组件与壁纸应用的区别
-尽管两者都以.apk形式存在，但组件不是一个完整的应用，不能够独立运行。
+* 尽管两者都以.apk形式存在，但组件不是一个完整的应用，里面只包含关于壁纸渲染的代码和资源，不能够独立运行。
 
-另外，组件中的WallpaperService实现，必须继承自`GLWallpaperServiceProxy`或者`WallpaperServiceProxy`，这是两个代理服务。前者是`GLWallpaperService`的子类，支持OpenGL。后者是系统`WallpaperService`的子类，支持普通的实现。而者两个代理类，都有一个带有`Context`参数的构造方法。
-而在壁纸应用中，应用的WallpaperService通常是直接继承自`GLWallpaperService`或者`WallpaperService`的，并且必须有个无参的构造方法，供系统创建对象。
+* 组件中的WallpaperService实现，必须继承自`WallpaperServiceProxy`、`GLWallpaperServiceProxy`或者`GDXWallpaperServiceProxy`，他们便是代理类。分别是普通壁纸渲染服务、OpenGL壁纸渲染服务、BadLogicGames游戏引擎壁纸渲染服务。他们会由
+而壁纸应用中，应用的WallpaperService通常是直接继承自`GLWallpaperService`或者`WallpaperService`的，并且必须有个无参的构造方法，供系统创建对象。
 
-组件中需要实现sdk提供`IProvider`接口，以返回组件中的WallpaperService实现。
+* 组件依赖sdk模块，且需要实现sdk提供的`IProvider`接口，以返回组件中的WallpaperService代理对象。
 
-最后，组件中不支持.so文件。
+* 组件中不支持.so文件。
 
-组件中除了上述几点之外，其他的基本跟普通应用没有区别。因此现成的绝大多数壁纸应用转化成组件的成本、组件的开发成本非常低廉。
+* 组件中不需要有四大组件，只需要关注壁纸的渲染。
+
+除了上述几点之外，其他的基本跟普通应用没有区别。因此现成的绝大多数壁纸应用转化成组件的成本、组件的开发成本都非常低廉。
 
 ### 工程模块说明
 本工程一共包含三个模块：
 * sdk
 * cube-wallpaper
 * component-app
-sdk模块是一个library模块，它是为开发者提供的组件编程规范。里面提供了`IProvider`接口、`GLWallpaperServiceProxy`类和`WallpaperServiceProxy`类，开发者需要实现他们以满足组件的规范。
+sdk模块是一个library模块，它是为开发者提供的组件编程规范。里面提供了`IProvider`接口、`WallpaperServiceProxy`，`GLWallpaperServiceProxy`和`GDXWallpaperServiceProxy`三个代理类，开发者需要实现三者之一以满足组件的规范。当前模块都代码都是编译时依赖的，运行时由引擎框架提供运行环境。因此此模块不能打到组件apk包中（在gradle中用`provided`而不是`compile`）。
 
 cube-wallpaper模块是一个library模块，是壁纸的实现的一个demo，它实现`GLWallpaperServiceProxy`渲染出了一个立方体。该模块依赖sdk模块，但是在gradle中需要使用`provided`而不是`compile`,防止将sdk模块打到组件包里。
 
