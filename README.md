@@ -119,6 +119,8 @@ public class ProviderImpl implements IProvider {
 
 * 组件首次运行需要用户下载，因此当组件包较大时，用户会消耗较长时间和较多流量。因此尽量减少组件包的大小。实践证明，组件包大小更多的取决于其中资源文件大小（图片），而组件代码量一般较少。
 
-
-
-
+## 代码混淆
+引擎框架会通过`IProvider`的实现名去创建其对象，并通过里面的方法获取代理对象。因此混淆时需要对`IProvider`实现类进行keep。混淆规则如下：
+```
+-keep class * implements com.yalin.style.engine.IProvider
+```
