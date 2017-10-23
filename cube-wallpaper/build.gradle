@@ -21,5 +21,5 @@ android {
 }
 
 dependencies {
-    provided project(':style-component-sdk')
+    provided "com.kinglloy.style.developer:style-component-sdk:$DEVELOP_SDK_VERSION"
 }
