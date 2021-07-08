@@ -107,7 +107,7 @@ public class ProviderImpl implements IProvider {
 将**config.json**和**point.apk**都放在/sdcard/style/目录下之后，运行测试应用。点击按钮，如果壁纸能正常加载，那么我们就成功了。
 
 #### 发布
-要在Style和八音壁纸中发布组件，需要联系开发者jinkg@live.cn，或者QQ：349218364。
+要在Style和八音壁纸中发布组件，需要联系开发者nilaynij@gmail.com。
 组件经过开发者审核之后，很快就会发布到Style和八音壁纸中。
 
 ## 性能说明
